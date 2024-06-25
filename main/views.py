@@ -99,7 +99,7 @@ def like_dislike(request):
 
 def search_youtube(request):
     query = request.GET.get('query', 'music')
-    api_key = 'AIzaSyDrxYK3bjDSB9KkDGvss4BoUaYzklpQAVw'
+    api_key = 'your api key'
     url = f'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q={query}&key={api_key}'
     response = requests.get(url)
     results = response.json().get('items', [])
