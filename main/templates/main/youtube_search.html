@@ -1,0 +1,22 @@
+{% extends "main/base.html" %}
+
+{% block title %}YouTube Search - MelodyGuide{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>YouTube Search</h1>
+    <form method="get" action="">
+        <input type="text" name="query" value="{{ query }}">
+        <button type="submit" class="button">Search</button>
+    </form>
+    <div class="results">
+        {% for item in results %}
+            <div class="video">
+                <h2>{{ item.snippet.title }}</h2>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ item.id.videoId }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <p>{{ item.snippet.description }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

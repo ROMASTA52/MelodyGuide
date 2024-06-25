@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+
+{% block title %}Login - MelodyGuide{% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button">Login</button>
+</form>
+{% endblock %}

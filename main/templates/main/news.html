@@ -1,0 +1,41 @@
+{% extends "main/base.html" %}
+
+{% block title %}News - MelodyGuide{% endblock %}
+
+{% block content %}
+<h1>News</h1>
+<p>This is the news page.</p>
+
+{% for item in news_items %}
+    <div class="news-item" id="news-item-{{ item.id }}">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.content }}</p>
+        {% if item.image %}
+            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+        {% endif %}
+        <p>Likes: <span class="like-count">{{ item.total_likes }}</span></p>
+        <p>Dislikes: <span class="dislike-count">{{ item.total_dislikes }}</span></p>
+        <button class="like-button" data-id="{{ item.id }}" data-type="newsitem" data-vote="1">Like</button>
+        <button class="dislike-button" data-id="{{ item.id }}" data-type="newsitem" data-vote="-1">Dislike</button>
+
+        <div class="comments">
+            <h3>Comments</h3>
+            <div id="comments-{{ item.id }}">
+                {% for comment in item.comments.all %}
+                    <p><strong>{{ comment.author.first_name }} {{ comment.author.last_name }}:</strong> {{ comment.text }} 
+                        <br /><em>({{ comment.created_at }})</em>
+                    </p>
+                {% endfor %}
+            </div>
+
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'add_comment' item.id %}">
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+                    <button type="submit" class="button">Add Comment</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
