@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-m7bu6r=6*(j!hkpatklze%jxf&ae!)hupk_02wr#10*%j-dngjdnfgdkj5dl$'
+SECRET_KEY = 'SECRET_KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,13 +80,12 @@ WSGI_APPLICATION = 'MelodyGuide2.wsgi.application'
 
 DATABASES = {
     'default': {
-        "ENGINE": "django.db.backends.sqlite3"
-        # 'ENGINE': os.getenv('SQL_ENGINE', 'django.db.backends.postgresql'),
-        # 'NAME': os.getenv('SQL_DATABASE'),
-        # 'USER': os.getenv('SQL_USER'),
-        # 'PASSWORD': os.getenv('SQL_PASSWORD'),
-        # 'HOST': os.getenv('SQL_HOST', 'localhost'),
-        # 'PORT': os.getenv('SQL_PORT', '5432'),
+        'ENGINE': os.getenv('SQL_ENGINE', 'django.db.backends.postgresql'),
+        'NAME': os.getenv('SQL_DATABASE'),
+        'USER': os.getenv('SQL_USER'),
+        'PASSWORD': os.getenv('SQL_PASSWORD'),
+        'HOST': os.getenv('SQL_HOST', 'localhost'),
+        'PORT': os.getenv('SQL_PORT', '5432'),
     }
 }
 
